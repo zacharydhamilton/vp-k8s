@@ -1,0 +1,4 @@
+resources:
+- setup-properties.yaml
+- vp-producer.yaml
+- vp-consumer.yaml

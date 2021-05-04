@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vp-producer-deployment
+  labels:
+    app: vp-producer
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: vp-producer
+  template:
+    metadata:
+      labels:
+        app: vp-producer
+    spec:
+      containers:
+      - name: vp-producer
+        image: zachhamilton/simple-vp-producer:latest
+        volumeMounts:
+        - name: setup-properties
+          mountPath: /config/setup.properties
+          readOnly: true
+          subPath: setup.properties
+      volumes:
+      - name: setup-properties
+        configMap: 
+          defaultMode: 0640
+          name: client-setup-properties

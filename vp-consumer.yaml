@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vp-consumer-deployment
+  labels:
+    app: vp-consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vp-consumer
+  template:
+    metadata:
+      labels:
+        app: vp-consumer
+    spec:
+      containers:
+      - name: vp-consumer
+        image: zachhamilton/simple-vp-consumer:latest
+        volumeMounts:
+        - name: setup-properties
+          mountPath: /config/setup.properties
+          readOnly: true
+          subPath: setup.properties
+      volumes:
+      - name: setup-properties
+        configMap: 
+          defaultMode: 0640
+          name: client-setup-properties

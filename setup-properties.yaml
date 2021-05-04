@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: client-setup-properties
+data:
+  setup.properties: |-
+    bootstrap.servers=<bootstrap_servers>
+    security.protocol=SASL_SSL
+    sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule   required username='<api_key>'   password='<api_secret>';
+    sasl.mechanism=PLAIN
+    client.dns.lookup=use_all_dns_ips
