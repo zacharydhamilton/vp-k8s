@@ -20,7 +20,7 @@
 
 1. With `minikube` running, use `kubectl` to build your setup.
     ```bash
-    kubectl create -k kustomization.yaml
+    kubectl create -k .
     ```
 
 1. Now, monitor the `Deployments` in order to verify everything launched correctly.
